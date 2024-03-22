@@ -14,4 +14,4 @@ This repo contains various testing tools and informaiton used for measuring data
 
 ## Contents
 
-transfer-test.sh - Debian-based script for upload/download testing.  run with `sudo ./transfer-test.sh`
+transfer-test.sh - Debian-based script for upload/download testing.  populate varriables in the script headers and run with `sudo ./transfer-test.sh`

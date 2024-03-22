@@ -7,6 +7,7 @@ AWS_ACCESS_KEY_ID=
 AWS_SECRET_ACCESS_KEY=
 AWS_ENDPOINT=
 PARALLEL=24
+TESTBUCKET=
 
 
 
@@ -39,28 +40,28 @@ speedtest --accept-gdpr --accept-license
 ### run tests
 ## aws
 # upload
-time aws s3 cp testfile10G.bin s3://testbucket2 --endpoint-url=$AWS_ENDPOINT
-time aws s3 cp testfile50G.bin s3://testbucket2 --endpoint-url=$AWS_ENDPOINT
-time aws s3 cp testfile100G.bin s3://testbucket2 --endpoint-url=$AWS_ENDPOINT
+time aws s3 cp testfile10G.bin s3://$TESTBUCKET --endpoint-url=$AWS_ENDPOINT
+time aws s3 cp testfile50G.bin s3://$TESTBUCKET --endpoint-url=$AWS_ENDPOINT
+time aws s3 cp testfile100G.bin s3://$TESTBUCKET --endpoint-url=$AWS_ENDPOINT
 
 # download
-time aws s3 cp s3://testbucket2/testfile10G.bin $TARGET_DIR --endpoint-url=$AWS_ENDPOINT
-time aws s3 cp s3://testbucket2/testfile50G.bin $TARGET_DIR --endpoint-url=$AWS_ENDPOINT
-time aws s3 cp s3://testbucket2/testfile100G.bin $TARGET_DIR --endpoint-url=$AWS_ENDPOINT
+time aws s3 cp s3://$TESTBUCKET/testfile10G.bin $TARGET_DIR --endpoint-url=$AWS_ENDPOINT
+time aws s3 cp s3://$TESTBUCKET/testfile50G.bin $TARGET_DIR --endpoint-url=$AWS_ENDPOINT
+time aws s3 cp s3://$TESTBUCKET/testfile100G.bin $TARGET_DIR --endpoint-url=$AWS_ENDPOINT
 
 
 ## cleanup storj
-uplink rm sj://testbucket2/testfile10G.bin
-uplink rm sj://testbucket2/testfile50G.bin
-uplink rm sj://testbucket2/testfile100G.bin
+uplink rm sj://$TESTBUCKET/testfile10G.bin
+uplink rm sj://$TESTBUCKET/testfile50G.bin
+uplink rm sj://$TESTBUCKET/testfile100G.bin
 
 
 
 ## uplink
 # upload
-time uplink cp testfile10G.bin sj://testbucket2 -p $PARALLEL 
-time uplink cp testfile50G.bin sj://testbucket2 -p $PARALLEL 
-time uplink cp testfile100G.bin sj://testbucket2 -p $PARALLEL
+time uplink cp testfile10G.bin sj://$TESTBUCKET -p $PARALLEL 
+time uplink cp testfile50G.bin sj://$TESTBUCKET -p $PARALLEL 
+time uplink cp testfile100G.bin sj://$TESTBUCKET -p $PARALLEL
 
 ## cleanup storj
 rm -f testfile10G.bin
@@ -69,6 +70,6 @@ rm -f testfile100G.bin
 
 
 # download
-time uplink cp sj://testbucket2/testfile10G.bin $TARGET_DIR -p $PARALLEL
-time uplink cp sj://testbucket2/testfile50G.bin $TARGET_DIR -p $PARALLEL
-time uplink cp sj://testbucket2/testfile100G.bin $TARGET_DIR -p $PARALLEL
+time uplink cp sj://$TESTBUCKET/testfile10G.bin $TARGET_DIR -p $PARALLEL
+time uplink cp sj://$TESTBUCKET/testfile50G.bin $TARGET_DIR -p $PARALLEL
+time uplink cp sj://$TESTBUCKET/testfile100G.bin $TARGET_DIR -p $PARALLEL
